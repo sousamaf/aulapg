@@ -19,8 +19,8 @@
 #include <PubSubClient.h>
 
 // Update these with values suitable for your network.
-byte mac[]    = {  0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xEF };
-IPAddress ip(10, 30, 2, 99);
+byte mac[]    = {  0xDE, 0xED, 0xBA, 0x01, 0xFE, 0xEF };
+IPAddress ip(10, 30, 2, 115);
 IPAddress server(10, 30, 2, 127);
 
 const int led1 = 31;
@@ -73,8 +73,9 @@ void setup()
   digitalWrite(led2, LOW);
   
   Serial.begin(115200);
+  Serial.println("setup");
   Ethernet.begin(mac, ip);
-  if (client.connect("arduinoClient", "m", "m")) {
+  if (client.connect("arduinoClient09183", "m", "m")) {
     client.publish("casa/lampada","wakeup");
     client.subscribe("casa/lampada/+", 1);
   }
